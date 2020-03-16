@@ -1,0 +1,61 @@
+<div style="margin-top: 10%">
+
+
+  <div id="notify" class="notify" *ngFor="let notify of notifications">
+    <div *ngIf="notify.touser_id===userid">
+      <div *ngIf="notify.notification_type==='favourite' ">
+
+        <h6 style="color:#2c76b4">Favourite</h6>
+
+
+        <b>{{notify.name}}</b> has added
+        <b>{{notify.propertyname}}</b> in his favourites on {{notify.created_on | date:'medium' }}
+
+      </div>
+
+      <div *ngIf="notify.notification_type==='bidding' ">
+
+        <h6 style="color:#2c76b4">Bidding</h6>
+        <b>{{notify.name}}</b> has bidded
+        <b>{{notify.propertyname}}</b> in your property on {{notify.created_on | date:'medium'}}
+
+      </div>
+    </div>
+
+    <hr>
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+<div id="notify" class="notify" *ngFor="let reqestnoti of requestnotifications">
+  <div *ngIf="reqestnoti.notificationtype=='request'" class="item-section">
+    <h6 style="color:#2c76b4">Request</h6>
+    <b (click)="agentprofile(reqestnoti.fromuserid)">{{reqestnoti.email}}</b> has send you request for Property {{reqestnoti.propertyname}}
+    <button type="button" pButton icon="pi pi-check" (click)="accept(reqestnoti.fromuserid,reqestnoti.propertyid,reqestnoti.id)"
+      label="Accept">Accept</button>
+    &nbsp;
+    <button type="button" pButton icon="pi pi-close" (click)="reject(reqestnoti.fromuserid,reqestnoti.propertyid,reqestnoti.id)"
+      label="Reject" class="ui-button-secondary">Reject</button>
+  </div>
+
+
+  <div *ngIf="reqestnoti.notificationtype==='agentremoved'" class="item-section">
+    <h6 style="color:#2c76b4">Removed as Agent</h6>
+    {{reqestnoti.message}}
+  </div>
+
+  <div *ngIf="reqestnoti.notificationtype=='accept'" class="item-section">
+    <h6 style="color:#2c76b4">Accepted</h6>
+    <b (click)="agentprofile(reqestnoti.from_username)">{{reqestnoti.email}}</b> has accepted your request for {{reqestnoti.propertyname}}
+  </div>
+
+
+
+</div>

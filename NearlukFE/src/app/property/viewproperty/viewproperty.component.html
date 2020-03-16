@@ -1,0 +1,65 @@
+<div class="loading" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false"
+  style="height: 600px; overflow-y: scroll;">
+  <div class="containt-fluid" style="margin-top:100px;">
+    <div class="row">
+      <div class="col-lg-3" *ngFor="let property of viewProperty">
+        <div class="card">
+          <div class="card-body">
+            <div class="img-wrapper">
+              <img [src]=property.img class="img-fluid" width="100%" height="200px"> </div>
+            <div class="data-field ">
+              <div class="name-field">
+                <h6>
+                  <span>
+                    <i aria-hidden="true"></i>
+                  </span> {{property.propertyname}}
+                </h6>
+              </div>
+              <div class="date-field">
+                <h6>
+                  <span>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                  </span>
+                  {{property.posteddate| date : 'dd/MM/yyyy'}}</h6>
+              </div>
+            </div>
+            <div class="row mid-con" style="margin:0px;">
+              <div class="left-part">
+                <div class="con-bar">
+                  <span class="text-bold">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  </span>
+                  <span> {{property.cityname}}</span>
+                </div>
+                <div class="con-bar">
+                  <span class="text-bold"></span>
+                  <i class="fa fa-th-large" aria-hidden="true"></i>
+                  <span> {{property.propertytype}}</span>
+                </div>
+                <div class="con-bar">
+                  <span class="text-bold">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    {{property.price}}/{{property.rentalperiod}}</span>
+                </div>
+                <div class="con-bar">
+                  <span class="text-bold">
+                    <i aria-hidden="true"></i>
+                  </span>Area :
+                  <span>{{property.areaname |slice:0:10}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin:0px;">
+              <div class="footer-bar-card">
+                <span class="more-del" (click)="moredetails(property.propertyid)">More Details
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

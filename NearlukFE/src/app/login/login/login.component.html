@@ -1,0 +1,57 @@
+<img src="../../assets/homepic2.jpg" alt="Los Angeles" class="img-fluid">
+
+<p-dialog header="Login Here" [(visible)]="display" [modal]="true" [blockScroll]="true" [responsive]="true"
+  [width]="400" [minWidth]="400" [minY]="70" [draggable]="false" [maximizable]="false" (onHide)="cncl()"
+  [baseZIndex]="10000">
+  <span></span>
+  <div class="container-fluid" id="login">
+
+    <form action="/action_page.php">
+      <div>
+
+        <div class="imgcontainer">
+          <img src="../assets/images/nearlukpng.png" alt="Avatar" class="avatar">
+        </div>
+      </div>
+      <div>
+
+        <input type="text" name="uid" class="form-control" #uid="ngModel" [(ngModel)]="login.emailId"
+          placeholder="Email" />
+        <div>
+        </div>
+       
+          <div class="ui-inputgroup">
+            <input type="password" name="pwd" class="form-control" #pwd="ngModel" [(ngModel)]="login.Password"
+              oncopy="return false" onpaste="return false" #pwd placeholder="Password" />
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+          <label class="fpsw" *ngIf='verifymail==true'>
+            <span class="psw"> <a (click)="verifyemail()">Send mail again</a></span>
+          </label>
+          </div>
+          <div class="col-md-6">
+          <label class="fpsw">
+            <span class="psw"> <a routerLink="forgotpassword">Forgot password?</a></span>
+          </label>
+          </div>
+          </div>
+       
+
+
+        <button class="btn btn-info" type="submit" (click)="Login()" id="submitbtn">Login</button>
+
+
+        <div class="row">
+
+
+
+
+          <p> Don't have account ? <label class="regh"><a (click)="registration()"> Register here</a>
+            </label></p>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</p-dialog>

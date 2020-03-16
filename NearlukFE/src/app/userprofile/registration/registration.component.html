@@ -1,0 +1,112 @@
+<div>
+  <img src="../../assets/homepic2.jpg" alt="Los Angeles" class="img-fluid">
+
+</div>
+
+
+<p-dialog id="regpopup" header="Register Here" [(visible)]="display" [modal]="true" [blockScroll]="true" [responsive]="true"
+  [minY]="40" [draggable]="false" [maximizable]="false" (onHide)="cncl()" [baseZIndex]="10000">
+  <div class="container-fluid" id="login" style="width: 400px">
+    <form #myFrm="ngForm" class="form-signin" name="form" (ngSubmit)="myFrm.form.valid && signUpClick(myFrm)" novalidate>
+      <div>
+        <div class="imgcontainer">
+          <img src="../assets/images/nearlukpng.png" alt="Avatar" class="avatar">
+        </div>
+      </div>
+      <div id="rtype">
+        <div class="row">
+          <div class="formtype" [class.has-error]="roleid.invalid && roleid.touched">
+
+            <b>I am : </b>&nbsp;
+            <label class="radio-inline">
+              <input type="radio" name="roleid" required #roleid="ngModel" [(ngModel)]="register.roleid" value="1" #roleidControl="ngModel"
+              />&nbsp;Owner/Tenant
+            </label>
+            &nbsp;&nbsp; &nbsp;&nbsp;
+            <label class="radio-inline">
+              <input type="radio" name="roleid" required #roleid="ngModel" [(ngModel)]="register.roleid" value="2" />&nbsp;Agent
+            </label>
+            <br>
+
+          </div>
+        </div>
+      </div>
+      <div>
+        <input type="text" #name="ngModel" minlength="3" maxlength="50" [(ngModel)]="register.name" name="name" autocomplete="off"
+          placeholder="Name" class="form-control" required pattern="[^ ~!#$%&*()^][ A-Za-z.]*" [ngClass]="{'is-invalid':myFrm.submitted && name.invalid}"
+          required />
+        <span *ngIf="name.errors && (name.touched ||name.dirty)">
+          <span [hidden]="!name.errors?.required">Please enter the name
+          </span>
+          <span data-toggle="popover" [hidden]="!name.errors?.minlength">This field should be within 3 - 50 chars range.</span>
+          <br>
+          <span [hidden]="!name.errors?.pattern">This field should accept alphabets only</span>
+        </span>
+        <div class="invalid-feedback" *ngIf="!(name.errors && (name.touched || name.dirty))">
+          <div>Please enter the name</div>
+        </div>
+      </div>
+      <div>
+        <input type="text" #Id="ngModel" maxlength="100" (input)="makeUserFalse()" [(ngModel)]="register.email" placeholder="Email"
+          autocomplete="off" name="email" class="form-control" required pattern="[a-zA-Z0-9!#$%&.'*+-/=?^_`{|}~]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+          [ngClass]="{'is-invalid':myFrm.submitted && Id.invalid}" required />
+        <span *ngIf="userExist==true">Email already exists</span>
+        <span *ngIf="Id.errors && (Id.touched || Id.dirty)">
+          <span [hidden]="!Id.errors?.required">Please enter the email Id</span>
+          <span [hidden]="!Id.errors.pattern">Please enter valid email Id</span>
+        </span>
+        <div class="invalid-feedback" *ngIf="!(Id.errors && (Id.touched || Id.dirty))">
+          <div>Please enter the email Id </div>
+        </div>
+      </div>
+      <div>
+        <input type="password" #password="ngModel" [(ngModel)]="register.Password" placeholder="Password" minlength="6" maxlength="30"
+          autocomplete="off" name="password" class="form-control" [ngClass]="{'is-invalid':myFrm.submitted && password.invalid}"
+          required pattern="[^ ~!#/^]*" required />
+        <span *ngIf="password.errors && (password.touched || password.dirty)">
+          <span data-toggle="popover" [hidden]="!password.errors.required">Please enter the password</span>
+          <span data-toggle="popover" [hidden]="!password.errors.minlength">This field should be within 6 - 30 chars range</span>
+          <!-- <span data-toggle="popover" [hidden]="!password.errors.maxlength">Max 30 digits</span> -->
+          <br />
+        </span>
+        <div class="invalid-feedback" *ngIf="!(password.errors && (password.touched || password.dirty))">
+          <div>Please enter the password</div>
+        </div>
+      </div>
+
+      <div>
+       <input class="form-control" type="password" #pwConfirm="ngModel" name="Confirm password" placeholder="Re-enter password"
+          [ngClass]="{'is-invalid':myFrm.submitted && pwConfirm.invalid}" ngModel required compare="password" />
+        <div class="text-danger" *ngIf="pwConfirm.invalid && (pwConfirm.dirty||pwConfirm.touched)">
+          <span *ngIf="pwConfirm.errors['required']">Please confirm the password</span>
+        </div>
+        <span *ngIf='pwConfirm.value!=register.Password && pwConfirm.value !=0 && register.Password !=null'>
+          Passwords mismatch, Try again
+        </span>
+        <div class="invalid-feedback" *ngIf="!(pwConfirm.errors && (pwConfirm.touched || pwConfirm.dirty))">
+          <div>Please confirm the password</div>
+        </div>
+      </div>
+      <div class="col-md-12" id="mobile">
+        <div id="mobile">
+          <input type="text" maxlength="15" class="form-control" placeholder="Mobile Number" #mobile="ngModel" [(ngModel)]="register.mobile"
+            name="mobile" autocomplete="off" pattern="[0-9]*" />
+          <span *ngIf="mobile.errors && (mobile.touched || mobile.dirty)">
+
+            <span data-toggle="popover" [hidden]="!mobile.errors.pattern">Please enter the mobile number</span>
+          </span>
+
+        </div>
+      </div>
+      <div class="row" id="sbmtbtn">
+        <div class="col-md-6" id="sbmt">
+          <button type="submit" id="submit" class="btn btn-info" [disabled]="roleidControl.errors">Submit</button>
+        </div>
+        <div class="col-md-6" id="cncl">
+          <button type="button" id="cancel" class="btn btn-danger" (click)="cncl()">Cancel</button>
+        </div>
+      </div>
+      <br>
+    </form>
+  </div>
+</p-dialog>

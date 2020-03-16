@@ -1,0 +1,168 @@
+
+<!-- <section>
+  <div class="container py-3" id="myprprtycard">
+    <div class="card" *ngFor="let property of propertydetails" id="mycard">
+      <div class="row ">
+        <div class="col-lg-4 col-md-12">
+          <div id="pimg">
+            <img [src]=property.img alt="user image" width="90%" height="200px" />
+          </div>
+        </div>
+        <div class=" col-lg-8 col-md-12">
+          <div class="card-block">
+            <div class="row">
+              <h5 id="username" title={{property.propertyname|titlecase}}>
+                {{(property.propertyname)| titlecase}}
+              </h5>
+            </div>
+            <hr>
+            <div class="row">
+              <h6>Type :</h6>
+              <span> {{property.propertytype}}</span>
+            </div>
+            <hr>
+            <div class="row">
+              <p id="rent">
+                <small id="headdingtext">Address :</small> {{property.address}}
+              </p>
+              <P id="rent">
+                <small id="headdingtext">Area :</small>
+                {{((property.areaname?.length>10)?(property.areaname|slice:0:10)+'...':(property.areaname))}}
+              </P>
+
+              <p id="rent">
+                <small id="headdingtext">Facing:</small> {{property.facing}}
+              </p>
+            </div>
+            <div class="row">
+              <p id="rent">
+                <small id="headdingtext">Rent :</small> {{property.country_currency_symbol}}
+                {{property.price}}/{{property.rentalperiod}}
+              </p>
+              <P id="rent">
+                <small id="headdingtext">Nearluk Verified :</small>
+                {{property.nearlukverified}}
+              </P>
+              <p id="rent">
+                <small id="headdingtext">Posted on :</small> {{property.posteddate | date }}
+              </p>
+            </div>
+            <div class="row">
+              <div id="moredetails">
+                <button class="btn btn-info" (click)="MoreDetails(property.id)">More Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+<!-- <br>
+<div class="containt-fluid" style="margin-top:100px;">
+  <div class="row" style="margin:0px;">
+    <div class="col-lg-3" *ngFor="let property of propertydetails">
+      <div class="card">
+        <div class="card-body">
+          <div class="img-wrapper"> <img [src]=property.img width="100%" height="200px"> </div>
+          <div class="data-field ">
+            <div class="name-field">
+              <h6> <span><i aria-hidden="true"></i></span>
+                {{(property.propertyname)| titlecase}}
+              </h6>
+            </div>
+            <div class="date-field">
+              <h6><span><i class="fa fa-calendar" aria-hidden="true"></i></span> {{property.posteddate | date }}</h6>
+            </div>
+          </div>
+          <div class="row mid-con" style="margin:0px;">
+            <div class="left-part">
+              <div class="con-bar"><span class="text-bold"><i class="fa fa-map-marker" aria-hidden="true"></i> </span>
+                <span>
+                  {{((property.areaname?.length>10)?(property.areaname|slice:0:10)+'...':(property.areaname))}}
+                </span></div>
+              <div class="con-bar"><span class="text-bold"></span> <i class="fa fa-th-large"
+                  aria-hidden="true"></i><span> {{property.propertytype}}</span></div>
+              <div class="con-bar"><span class="text-bold"><i class="fa fa-home" aria-hidden="true"></i></span> <span>
+                  {{property.country_currency_symbol}}
+                  {{property.price}}/{{property.rentalperiod}}</span></div>
+            </div>
+            <div class="right-part">
+              <div id="maro">
+                <span>Facing : <i aria-hidden="true"> {{property.facing}}</i></span>
+              </div>
+              <div id="maro1">
+                <span>Verified:<i aria-hidden="true"> {{property.nearlukverified}}</i></span>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin:0px;">
+            <div class="footer-bar-card"> <span class="more-del" (click)="MoreDetails(property.id)">More Details</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div style="align-content: center" *ngIf="propertydetails?.length==null">
+        <div id="noPropText">
+          <img src="../../../assets/images/no properties.png" class="img-fluid" alt="No Bidded properties.."
+            style="width:100%;height:600px">
+        </div>
+      </div>
+      
+      <div *ngIf="propertydetails?.length!=null" class="loading" id="style-1" infiniteScroll [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false"
+        style="height: 600px; overflow-y: scroll;">
+        <div class="containt-fluid" style="margin-top:100px;">
+          <div class="row" style="margin:0px;">
+            <div class="col-lg-3" *ngFor="let property of propertydetails">
+              <div class="card">
+                <div class="card-body">
+                  <div class="img-wrapper"> <img [src]=property.img width="100%" height="200px"> </div>
+                  <div class="data-field ">
+                    <div class="name-field">
+                      <h6> <span><i aria-hidden="true"></i></span>
+                        {{(property.propertyname)| titlecase}}
+                      </h6>
+                    </div>
+                    <div class="date-field">
+                      <h6><span><i class="fa fa-calendar" aria-hidden="true"></i></span> {{property.posteddate | date }}</h6>
+                    </div>
+                  </div>
+                  <div class="row mid-con" style="margin:0px;">
+                    <div class="left-part">
+                      <div class="con-bar"><span class="text-bold"><i class="fa fa-map-marker" aria-hidden="true"></i> </span>
+                        <span>
+                          {{((property.areaname?.length>10)?(property.areaname|slice:0:10)+'...':(property.areaname))}}
+                        </span></div>
+                      <div class="con-bar"><span class="text-bold"></span> <i class="fa fa-th-large"
+                          aria-hidden="true"></i><span> {{property.propertytype}}</span></div>
+                      <div class="con-bar"><span class="text-bold"><i class="fa fa-home" aria-hidden="true"></i></span> <span>
+                          {{property.country_currency_symbol}}
+                          {{property.price}}/{{property.rentalperiod}}</span></div>
+                    </div>
+                    <div class="right-part">
+                      <div id="maro">
+                        <span>Facing : <i aria-hidden="true"> {{property.facing}}</i></span>
+                      </div>
+                      <div id="maro1">
+                        <span>Verified:<i aria-hidden="true"> {{property.nearlukverified}}</i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="margin:0px;">
+                    <div class="footer-bar-card"> <span class="more-del" (click)="MoreDetails(property.id)">More
+                        Details</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

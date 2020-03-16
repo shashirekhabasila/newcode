@@ -1,0 +1,153 @@
+/* reg form */
+
+
+#regpopup{
+  background-color: red
+  }
+  /* #regform{
+    padding-top:9%;
+    background-color:#d9d9d9; 
+  
+    padding-bottom:9%;
+  } */
+  span{
+    color: red;
+  }
+  #resend{
+    cursor: pointer;
+    color: rgb(21, 171, 182); 
+    float: right;
+    padding-top: 10px;
+  }
+  input[type=number]::-webkit-inner-spin-button, 
+   input[type=number]::-webkit-outer-spin-button { 
+       -webkit-appearance: none;
+       -moz-appearance: none;
+       appearance: none;
+       margin: 0; 
+   }
+  #otpButton{
+    padding-left: 100px;
+  }
+  form{
+    background-color:white;
+    padding:20px 20px 20px 20px;
+    border-radius:10px; 
+  }
+  #rtype{
+    padding-top:20px;
+    
+  }
+  
+  #mobile {
+    padding-left:0px!important;
+    padding-right:0px!important;
+  }
+   
+  
+  #owner{
+    padding-left:10px;
+  }
+  .formtype{
+    padding-right:10px;
+    margin-left: 40px;
+  }
+  
+  
+  #owner{
+    padding-right:10px;
+    padding-left:10px;
+  }
+  .agent{
+    padding-right:10px;
+    padding-left:10px;
+  }
+  
+  h4{
+    color:#990000;
+  }
+  
+  /* reg form  finished */
+  
+  
+  /* Login */
+  #navcolor{
+    background-color: #003366;
+  }
+  
+  body {font-family: Arial, Helvetica, sans-serif;}
+  /*form {border: 3px solid #f1f1f1;}*/
+  
+  input[type=text]{
+      width: 100%;
+      padding: 8px 10px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+  }
+  
+  input[type=password]{
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  
+  
+  #sbmtbtn{
+  text-align: center;
+  margin-top: 10px;
+  }
+  
+  #submit{
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  #cancel{
+    width: 100%;
+  }
+  .imgcontainer {
+      text-align: center;
+   }
+  img.avatar {
+      width: 20%;
+      border-radius: 50%;
+  }
+  span.psw {
+      float: right;
+     padding-left:50px;
+  }
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+      span.psw {
+         display: block;
+         float: none;
+      }
+      .cancelbtn {
+         width: 100%;
+      }
+  }
+  
+  #login{
+   background: linear-gradient(to top, #ffffff -2%, #17a2b8 100%);
+    background: linear-gradient(to top, #ffffff -2%, #17a2b8 100%);
+     padding-top:5%;
+  }
+  
+  /* Login Finished */
+  
+   #sbmt{
+    width: 100%;
+  } 
+  #cncl{
+    width:100%;
+  }
+  
+  

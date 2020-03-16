@@ -1,0 +1,702 @@
+<div class="container-fluid">
+  <div class="container-fluid">
+    <p-galleria [images]="dispalayimages" [showCaption]="false" [autoPlay]="false" panelWidth="100%" panelHeight="450">
+    </p-galleria>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">
+        <div>
+          <share-buttons theme="material-dark" show="3"></share-buttons>
+        </div>
+      </div>
+      <div class="col-md-11">
+        <div class="container">
+
+
+          <div class="row" *ngIf="videoshow==true">
+            <div class="col-md-6" *ngFor="let peopertyDetails of propertydetails">
+              <video width="100%" height="300px" controls>
+                <source src="http://localhost:3400/{{peopertyDetails.id}}.mp4" alt="novijhjhh" type="video/mp4"> Your
+                browser does not support the video tag.
+              </video>
+            </div>
+            <br>
+            <div class="col-md-6" id="mapwidth" style="width:100%">
+              <agm-map [latitude]="latitude" [longitude]="longitude">
+                <agm-marker [(latitude)]="latitude" [(longitude)]="longitude" [iconUrl]="iconUrl"></agm-marker>
+              </agm-map>
+            </div>
+          </div>
+          <div class="row" *ngIf="videoshow==false">
+            <div class="col-md-12" id="mapwidth" style="width:100%">
+              <agm-map [latitude]="latitude" [longitude]="longitude">
+                <agm-marker [(latitude)]="latitude" [(longitude)]="longitude" [iconUrl]="iconUrl"></agm-marker>
+              </agm-map>
+            </div>
+          </div>
+
+
+          <br>
+
+
+          <div class="row" *ngFor="let peopertyDetails of propertydetails">
+            <div class="col-md-5" id="details">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Property Name</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td>
+                      {{peopertyDetails.propertyname}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Property Type</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td>
+                      {{peopertyDetails.propertytype}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <label id="detailsText">Average Rating</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td *ngIf="peopertyDetails.trunc!=null">
+                      {{peopertyDetails.trunc}}
+                    </td>
+                    <td *ngIf="peopertyDetails.trunc==null">
+                      NA
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <label id="detailsText">Facing</label>
+                    </td>
+                    <td> : </td>
+                    &nbsp;
+                    <td>
+                      {{peopertyDetails.facing}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Rental Price</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td>
+                      {{peopertyDetails.price}}/{{peopertyDetails.rentalperiod}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Maintenance Cost</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td *ngIf="peopertyDetails.maintainancecost!=null">
+                      {{peopertyDetails.maintainancecost}}
+                    </td>
+                    <td *ngIf="peopertyDetails.maintainancecost==null">
+                      NA
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Security Deposit</label>
+                    </td>
+
+                    <td>:</td>
+                    &nbsp;
+                    <td *ngIf="peopertyDetails.securitydeposit!=null">
+                      {{peopertyDetails.securitydeposit}}
+                    </td>
+                    <td *ngIf="peopertyDetails.securitydeposit==null">
+                      NA
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Description</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td *ngIf="peopertyDetails.description!=null">
+                      {{peopertyDetails.description}}
+                    </td>
+                    <td *ngIf="peopertyDetails.description==null">
+                      NA
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Nearluk Verified</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td *ngIf="peopertyDetails.nearlukverified!=null">
+                      {{peopertyDetails.nearlukverified}}
+                    </td>
+                    <td *ngIf="peopertyDetails.nearlukverified==null">
+                      NA
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText"> Property Age</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td *ngIf="peopertyDetails.age!=null"> {{peopertyDetails.age}} Years</td>
+                    <td *ngIf="peopertyDetails.age==null"> NA</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+
+            <div class="col-md-5" id="details">
+
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Property Area</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td> {{peopertyDetails.propertyarea}} /Square Feets</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Construction Status</label>
+                    </td>
+                    <td> : </td>
+                    &nbsp;
+                    <td>{{peopertyDetails.constructionstatus}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Posted Date</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td> {{peopertyDetails.posteddate | date : 'dd/MM/yyyy'}}</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <label id="detailsText">Area</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td> {{peopertyDetails.areaname}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">City</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td>{{peopertyDetails.cityname}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">State</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td>{{peopertyDetails.statename}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Country</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td>{{peopertyDetails.countryname}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Pincode</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td> {{peopertyDetails.pincode}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label id="detailsText">Available From</label>
+                    </td>
+                    <td>:</td>
+                    &nbsp;
+                    <td *ngIf="peopertyDetails.available!=null"> {{peopertyDetails.available | date : 'dd/MM/yyyy'}}
+                    </td>
+                    <td *ngIf="peopertyDetails.available==null"> NA</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-2" id="addagent">
+
+
+              <div>
+                <div id="bidding">
+                  <button class="btn btn-info"
+                    (click)="getBidding(peopertyDetails.id,peopertyDetails.price,peopertyDetails.userid)">Bidding</button>
+                </div>
+              </div>
+              <br>
+              <div id="compare">
+                <span class="check"
+                  *ngIf="peopertyDetails.id !=compare1 && peopertyDetails.id !=compare2 && peopertyDetails.id !=compare3">
+                  <input type="checkbox" #chk [value]="peopertyDetails.propertytype"
+                    (click)="checkedd(peopertyDetails.id, chk )"> Add to Compare
+                </span>&nbsp;
+                <div class="check"
+                  *ngIf="peopertyDetails.id ==compare1|| peopertyDetails.id ==compare2|| peopertyDetails.id ==compare3">
+                  <input type="checkbox" #checked [value]="peopertyDetails.propertytype"
+                    (click)="checkedd(peopertyDetails.id, checked )" checked> Add to Compare
+                </div>
+              </div>
+              <br>
+
+              <div id="addfvrt">
+                <div class="fvrt" *ngIf="favourites==false">
+                  <i class="fa fa-heart-o fa-2x" aria-hidden="true" (click)="addintofav()"></i>
+                </div>
+                <div class="fvrt" *ngIf="favourites==true" style="color: red">
+                  <i class="fa fa-heart fa-2x" aria-hidden="true" (click)="removeFavourite()"></i>
+                </div>
+              </div>
+              <br>
+              <div id="rate">
+                <p-rating [(ngModel)]="rate" name="rate" #rate1="ngModel" style="size:100px;"
+                  (onRate)="RatingSend($event)" [cancel]="false">
+                </p-rating>
+              </div>
+              <br>
+              <div id="likes">
+                <span>
+                  <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true" id="like" (click)="Like()" id="like">&nbsp;
+                  </i>
+                  <b id="count">{{propertylikes}}</b>
+                </span>
+                <div>
+                </div>
+              </div>
+
+
+              <div *ngIf="agents==true && peopertyDetails.userid!=userid">
+                <span *ngIf="agentAdded" style="color: green">You're an Agent for this Porperty</span>
+                <button *ngIf="!notification && !agentAdded" class="btn btn-warning"
+                  (click)="addAgent(peopertyDetails.userid)">Subscribe as Agent</button>
+                <button *ngIf="notification" class="btn btn-success">Notification Sent</button>
+              </div>
+
+
+              <div id="viewbtn">
+                <span *ngIf="userid==null&&propertyviewscount=='NDF'">
+                  <b>No.of Views : </b> 0</span>
+                <span *ngIf="userid==null&&propertyviewscount!='NDF'">
+                  <b>No.of Views :</b> {{propertyviewscount.length}}</span>
+                <span *ngIf="userid!=null&&propertyviewscount=='NDF'">
+                  <b>No.of Views :</b> 0</span>
+                <span *ngIf="userid!=null&&propertyviewscount!='NDF'&&userid!=peopertyDetails.userid">No.of Views:
+                  {{propertyviewscount.length}}
+                </span>
+                <button *ngIf="userid!=null&&propertyviewscount=='NDF'&&userid==peopertyDetails.userid" type="button"
+                  class="btn btn-info" disabled>
+                  <span class="badge">0</span>
+                  Views</button>
+                <button *ngIf="userid!=null&&propertyviewscount!='NDF'&&userid==peopertyDetails.userid" type="button"
+                  class="btn btn-info" (click)="propertyviews(peopertyDetails.id)" data-toggle="modal"
+                  data-target="#myModal">
+                  <span class="badge">{{propertylength}}</span>
+                  Views</button>
+                  <br>
+                  <br>
+                  <button type="button" class="btn btn-info"
+                    (click)="getaverage(peopertyDetails.propertytypeid,peopertyDetails.areaid,peopertyDetails.id)">Avg
+                    Price
+                  </button>
+                </div>
+  
+                <p-dialog header="Average Price" [modal]="true" [draggable]="false" [(visible)]="avgprice" [width]="400"
+                  [contentStyle]="{'max-height':'200px'}">
+                  <div class="container">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th> Property Name</th>
+                          <th>Propery Type</th>
+                          <th>Avg Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <td> {{peopertyDetails.propertyname}}</td>
+                        <td>{{peopertyDetails.propertytype}}</td>
+                        <td>{{averagebyarea}}</td>
+  
+                      </tbody>
+                    </table>
+                  </div>
+                </p-dialog>
+
+              
+              <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Viewers Details</h5>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="container">
+
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let propertyviewscount of propertyviewscount">
+                          <tr>
+                            <td>{{propertyviewscount.name}}</td>
+                            <td>{{propertyviewscount.mobile}}</td>
+                            <td> {{propertyviewscount.email}}</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <p-accordion (onOpen)="onTabOpen()">
+            <p-accordionTab header="Owner Info">
+              <div class="container">
+                <div class="row" *ngFor="let owner of owner">
+                  <div class="col-md-3">
+                    <img id="pimg" [src]=owner.img alt="user image" width="100%" />
+                  </div>
+                  <div class="offset-1 col-md-8" id="contenet">
+                    <h5>
+                      <b>Owner Name : </b>
+                    </h5>
+                    {{owner.name}}
+                    <hr>
+
+                    <h5>
+                      <b>Contact Info : </b>
+                    </h5>
+
+                    Email : {{owner.email}}
+                    <br> Mobile : {{owner.mobile}}
+                  </div>
+                </div>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+          <br>
+          <p-accordion>
+            <p-accordionTab header="Facilities" [selected]="true">
+              <div class="container">
+                <div class="row">
+
+                  <div class="col-md-3" *ngFor="let facilities of facilitiesArray">
+                    <div id="facilityblock">
+                      <img [src]="facilities.fimg" width="20px" height="20px" />
+                      <span id="facilitytext"> {{facilities.fname|titlecase}} </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </p-accordionTab>
+
+          </p-accordion>
+          <br>
+          <p-accordion>
+            <p-accordionTab header="Amenities" [selected]="true">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let amenities of amenitiesArrayGet">
+                    <div id="facilityblock">
+                      <span id="amentitytext"> {{amenities.aname}}:{{amenities.avalue}} </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+          <br>
+          <p-accordion>
+            <p-accordionTab header="Review">
+
+              <div class="col-lg-10 col-md-10 ">
+                <form #myFrm="ngForm" (ngSubmit)="onSubmit(myFrm)" id="form" name="form" novalidate>
+                  <div class="card  comment-card">
+                    <div class="card-body">
+                      <h5 class="line-bottom">Post Your Review:-</h5>
+                      <div class="comment-field">
+                        <textarea class="form-control" class="form-control" name="comments" #comments="ngModel"
+                          [(ngModel)]="Comments" rows="1" cols="10" placeholder="Enter Your Review"
+                          pattern="([^\s][A-z0-9À-ž.,/:?'@!#$%&*(){};>~|/+=-\s]+)" maxlength="250" required></textarea>
+                        <span *ngIf="comments.errors && (comments.touched || comments.dirty)">
+                          <span [hidden]="!comments.errors.pattern">Spaces are not allowed</span>
+                          &nbsp;
+                        </span>
+                      </div>
+
+
+                    </div>
+                    <button class="btn btn-primary btn-lg comment-btn" type="button" [disabled]="comments.invalid"
+                      (click)="btncomments(comments.value)">Submit</button>
+
+                  </div>
+
+                </form>
+                <div *ngIf='notifyvisible==true'>
+                  <div class="card comment-card loading" id="style-1" infiniteScroll [infiniteScrollDistance]="2"
+                    [infiniteScrollThrottle]="50" [scrollWindow]="false" style="height: 300px; overflow-y: scroll;">
+                    <div class="card-body" *ngFor="let comments of allComments">
+                      <div class="loading" *ngIf="comments.comment!='null'">
+                        <div class="comment-box" *ngIf="comments.comment!='null'">
+                          <div class="right-comment">
+                            <a href="#" class="pull-left">
+                              <img [src]=comments.img alt="" class="img-circle" style="height:55px; width:50px">
+                            </a>
+
+                            <h6>@
+                              <b>{{comments.name}}</b>
+                            </h6>
+                            <!-- <span class="b-text"><h6>Date: <b>date required</b></h6></span> -->
+                            <span class="b-text">
+                              <i class="fa fa-comment"> &nbsp;
+                                <b>{{comments.comment}}</b>
+                              </i>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </p-accordionTab>
+          </p-accordion>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br>
+
+<div class="container-fluid" id="SimilarPropertyCard">
+  <p-carousel headerText="Similar Properties" autoplayInterval="5000" numVisible=4 [value]="similarpropertys">
+
+    <ng-template let-propertys pTemplate="item">
+
+      <!-- <div class="container">
+  
+        <div>
+          <div>
+            <div class="card">
+              <div class="card-body">
+                <div class="img-wrapper">
+                  <img [src]="propertys.img" width="100%" height="100px"> </div>
+  
+                <div class="row mid-con" style="margin:0px; margin-top: 30px;">
+                  <div class="left-part">
+                    <div class="con-bar">
+                      <span class="text-bold">Properties:</span>
+                      <span class="b-text">{{propertys.propertyname}}</span>
+                    </div>
+                    <div class="con-bar">
+                      <span class="text-bold">Price:</span>
+                      <span class="b-text">{{propertys.price}}</span>
+                    </div>
+                    <div class="con-bar">
+                      <span class="text-bold">CityName:</span>
+                      <span class="b-text">{{propertys.cityname}}</span>
+                    </div>
+                  </div>
+  
+                </div>
+                <div class="row" style="margin:0px;">
+                  <div class="footer-bar-card">
+                    <span class="more-del" (click)="moredetails1(propertys.propertyid)">More Details</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+
+
+      <div class="containt-fluid">
+        <div class="row" id="recom">
+          <div class="col-lg-12">
+
+            <div class="card-body">
+              <div class="img-wrapper">
+                <img [src]=propertys.img class="img-fluid" width="100%" height="200px"> </div>
+              <br>
+              <div class="row">
+                <div class="name-field">
+                  <h6>
+                    <span>
+                      <p aria-hidden="true" id="username" title={{propertys.propertyname|titlecase}}
+                        (click)="moredetails(propertys.id)">
+                        &nbsp;
+                        {{((propertys.propertyname?.length>10)?(propertys.propertyname|slice:0:10)+'...':(propertys.propertyname)) | titlecase}}
+                      </p>
+
+                    </span>
+                  </h6>
+                </div>
+                <div class="date-field">
+                  <h6>
+                    <span>
+                      <i class="fa fa-calendar" aria-hidden="true" id="headdingtext"></i>
+                      {{propertys.posteddate | date }}
+                    </span>
+                  </h6>
+                </div>
+              </div>
+              <hr>
+              <div class="row mid-con" style="margin:0px;">
+                <div class="left-part">
+                  <div class="con-bar">
+                    <span class="text-bold">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </span>
+                    <span> {{propertys.cityname}}</span>
+                  </div>
+                  <div class="con-bar">
+                    <span class="text-bold"></span>
+                    <i class="fa fa-th-large" aria-hidden="true"></i>
+                    <span> {{propertys.propertytype}}</span>
+                  </div>
+                  <div class="con-bar">
+                    <span class="text-bold">
+                      <i class="fa fa-home" aria-hidden="true"></i>
+                    </span>
+                    <span>
+                      {{propertys.price}}/{{propertys.rentalperiod}} </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="margin:0px;">
+
+                <button class="morebutton" (click)="moredetails1(propertys.propertyid)">More Details
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </ng-template>
+  </p-carousel>
+</div>
+<p-dialog header="Previous Bids" [(visible)]="bidding" [modal]="true" [contentStyle]="{'max-height':'50vh'}"
+  [blockScroll]="true" [width]="500" [draggable]="false">
+  <div class="col-md-12">
+    <b>Base Price : &nbsp;{{baseprice}}</b>
+    <br>
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Bid Date</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let bid of bidprice">
+          <tr>
+            <td> {{bid.name}}</td>
+            <td>{{bid.biddingprice}}</td>
+            <td>{{bid.biddingdate | date}}</td>
+            <div *ngIf="proportyownerid==userid">
+              <span type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1"
+                (click)="GetUserDetails(bid.userid)" id="detailsbtn">Details
+              </span>
+            </div>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+
+    <div class="col-md-12">
+      <form #myFrm="ngForm" (ngSubmit)="myFrm.form.valid && onSubmit(myFrm)" id="form" name="form" novalidate>
+        <div class="row" *ngIf="proportyownerid!=userid && proportyownerid!=roleid">
+          <b>Post Bidding :</b>
+          <div class="col-md-4" c id="bidbox">
+
+            <input type="text" name="Biddingprice" #Biddingprice="ngModel" [(ngModel)]="Bidd.biddingprice"
+              maxlength="15" class="form-control" pattern="[0-9]*" required>
+
+
+            <span *ngIf="Biddingprice.errors && (Biddingprice.touched || Biddingprice.dirty)" style="color: red">
+              <span data-toggle="popover" [hidden]="!Biddingprice.errors.pattern">enter only numbers</span>
+              <span data-toggle="popover" [hidden]="!Biddingprice.errors.maxlength">max 15 digits</span>
+              <br />
+            </span>
+          </div>
+          <div id="bid">
+            <button class="btn btn-primary" (click)="btnprice(Biddingprice)">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+</p-dialog>
+
+<p-dialog header="User Details" [modal]="true" [draggable]="false" [(visible)]="userdetailsbidding" [width]="400"
+  [contentStyle]="{'max-height':'200px'}">
+  <div *ngFor="let detail of details">
+    User Name: {{detail.name}}
+    <br> Mobile Number: {{detail.mobile}}
+    <br> User Email: {{detail.email}}
+    <br>
+  </div>
+</p-dialog>

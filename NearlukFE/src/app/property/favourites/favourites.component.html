@@ -1,0 +1,129 @@
+<!-- <div style="align-content: center" *ngIf="favourites?.length==null">
+  <i id="deleteIcon" class="fa fa-trash-o fa-5x" aria-hidden="true"></i>
+  <br>
+  <div id="noPropText">
+    <img src="../../../assets/images/nofavourites.png" class="img-fluid" style="width:100%;height:500px">
+  </div>
+  <br />
+</div>
+
+<section>
+
+  <div class="loading" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+    [scrollWindow]="false" style="height: 600px; overflow-y: scroll;">
+    <div class="container py-3">
+      <div class="card card1" *ngFor="let prop of favourites" id="favcard">
+        <div class="row " style="margin:0px;">
+          <div class="col-lg-4 col-md-12">
+            <div id="pimg">
+              <img [src]=prop.img alt="user image" width="90%" height="200px" id="img" />
+            </div>
+          </div>
+          <div class=" col-lg-8 col-md-12 px-3">
+            <div class="card-block px-3">
+              <div class="row">
+                <h5 id="username" title={{prop.propertyname|titlecase}} (click)="moredetails(prop.id)">
+                  {{prop.propertyname}}
+                </h5>
+              </div>
+              <hr>
+              <div class="row">
+                <h6>Type :</h6>
+                <span>
+                  {{((prop.propertytype?.length>10)?(prop.propertytype|slice:0:10)+'...':(prop.propertytype))}}</span>
+              </div>
+              <hr>
+              <div class="row">
+                <p id="rent">
+                  <small id="headdingtext">Rent :</small>
+                  {{prop.price}}/{{prop.rentalperiod}}
+                </p>
+                <P id="rent">
+                  <small id="headdingtext">City :</small>
+                  {{((prop.cityname?.length>10)?(prop.cityname|slice:0:10)+'...':(prop.cityname))}}
+                </P>
+                <button (click)="moredetails(prop.id)" class="btn btn-info" id="morebutton">
+                  Details</button>&nbsp;
+                <button (click)="delete(prop.id)" class="btn btn-danger" id="deletebtn">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+
+<div style="align-content: center;margin-top: 10%" *ngIf="favourites?.length==null">
+  <div id="noPropText">
+    <img src="../../../assets/images/nofavourites.png" class="img-fluid" alt="You haven't added any properties .." style="width:100%;height:600px">
+  </div>
+</div>
+
+<div class="loading" id="style-1" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+  [scrollWindow]="false" style="height: 600px; overflow-y: scroll;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3" style="margin-top:15%;" *ngFor="let prop of favourites" id="mycard">
+        <div class="card">
+          <div class="card-body">
+            <div class="img-wrapper">
+              <img [src]=prop.img class="img-fluid" width="100%" height="200px">
+            </div>
+            <div class="data-field ">
+              <div class="name-field">
+                <h6>
+                  <span>
+                    <i aria-hidden="true" id="username" title={{prop.propertyname|titlecase}} (click)="moredetails(prop.id)"></i>
+                  </span> {{prop.propertyname}}</h6>
+              </div>
+            </div>
+            <div class="row mid-con" style="margin:0px;">
+              <div class="left-part">
+                <div class="con-bar">
+                  <span class="text-bold">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    {{((prop.cityname?.length>10)?(prop.cityname|slice:0:10)+'...':(prop.cityname))}} </span>
+                </div>
+                <div class="con-bar">
+                  <span class="text-bold"></span>
+                  <i class="fa fa-th-large" aria-hidden="true"></i>
+                  <span>
+                    {{((prop.propertytype?.length>10)?(prop.propertytype|slice:0:10)+'...':(prop.propertytype))}}
+                  </span>
+                </div>
+                <div class="con-bar">
+                  <span class="text-bold">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    {{prop.price}}/{{prop.rentalperiod}} </span>
+                </div>
+              </div>
+              <div class="right-part">
+                <div>
+                  <button type="button" class="btn btn-danger btn-xs btn-del" (click)="delete(prop.id)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin:0px;">
+              <div class="footer-bar-card">
+                <span class="more-del" (click)="moredetails(prop.id)">More Details</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+#nearupage{
+  padding-top:100px;
+  margin: 5px;
+}
+
+/* .card{
+z-index: 0;
+overflow: hidden;
+} */
+
+#mycard{
+  width: 100%;
+  height: 355px;
+  margin-bottom: 5px;
+}
+
+#myprprtycard{
+  width: 100%;
+  background-color: rgb(218, 231, 237);
+}
+
+#username {
+  color: rgb(99, 197, 197);
+  cursor: pointer;
+  padding-top:15px;
+  padding-left:40px;
+  }
+
+  #type{
+    padding-left:40px;
+  }
+agm-map {
+  height: 560px;
+  width:100%;
+}
+#pimg{
+  padding: 10px;
+  }
+  #pimg img{
+    padding: 10px;
+    border: 1px solid #f0eeee;
+    background-color: #f0eeee;
+    margin-bottom: 5px;
+
+  }
+
+  .map-card{
+    margin-bottom: 10px;
+    width: 138%;
+    margin-left: -18px;
+  }
+  .map-header{
+    text-align: center;
+    font-size: 25px;
+    color:#17a2b8;
+  }
+  .more-del {
+    font-size: 13px;
+    float: left;
+    color: #ffff;
+    background-color:#17a2b8;
+    padding:8px;
+    border-radius:15px;
+    cursor: pointer;
+  }
+  .more-del:hover{
+  color: #b3d7ff;
+  }
+  #style-1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}

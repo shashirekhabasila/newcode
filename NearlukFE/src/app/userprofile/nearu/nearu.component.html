@@ -1,0 +1,125 @@
+<div style="align-content: center;margin-top: 10%" *ngIf="propertyList?.length==null">
+  
+
+  <div id="noPropText">
+    <img src="../../../assets/images/nofavourites.png" class="img-fluid" style="width:100%;height:500px">
+  </div>
+</div>
+
+<div class="container" id="nearupage" style="margin-top: 5%">
+
+
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="loading" id="style-1" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+        [scrollWindow]="false" style="height: 600px; overflow-y: scroll;">
+        <div class="container py-3" id="myprprtycard">
+          <div class="card" *ngFor="let nls of propertyList" id="mycard">
+            <div class="row">
+              <div class="col-md-12">
+                <div>
+                  <img [src]=nls.img alt="user image" height="150px" width="100%" />
+                </div>
+              </div>
+            </div>
+            <div class="row" style="line-height: 30px;">
+              <div class="col-md-12">
+                <div class=" col-lg-8 col-md-12">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th colspan="3">
+                          {{((nls.propertyname?.length>10)?(nls.propertyname|slice:0:10)+'...':(nls.propertyname)) | titlecase}} </th>
+                      </tr>
+                    </thead>
+                    <tr>
+                      <td>Type </td>
+                      <td>:</td>
+                      <td>{{((nls.propertytype?.length>10)?(nls.propertytype|slice:0:10)+'...':(nls.propertytype))}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Distance </td>
+                      <td>:</td>
+                      <td>{{nls.distance | number}}&nbsp; Miles</td>
+                    </tr>
+                    <tr>
+                      <td>Area </td>
+                      <td>:</td>
+                      <td>{{((nls.areaname?.length>20)?(nls.areaname|slice:0:10):(nls.areaname))}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3">
+                        <span class="more-del" (click)="moredetails(nls.id)">More Details</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card map-card">
+        <div class="card-body">
+          <div id="agmap">
+            <agm-map #gm [latitude]="latt" [longitude]="lngg" [zoom]='15'>
+              <agm-marker [(latitude)]="latt" [(longitude)]="lngg"></agm-marker>
+              <agm-marker *ngFor="let m of propertyList; let i = index" [latitude]="m.latitude" [longitude]="m.longitude" (mouseOver)="onMouseOver(infoWindow,gm,m.propertyid)"
+                (mouseOut)="onMouseOverout(infoWindow,gm)" [iconUrl]="iconUrl">
+                <div>
+                  <agm-info-window [disableAutoPan]="true" id="hovercard" #infoWindow>
+                    <div *ngIf='propertymap!=null'>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <img class="img-fluid" [src]=propertymap.img alt="Property image" width="100%;" height="150px;" />
+                        </div>
+                        <div class="col-md-8">
+                          <table class="table" style="text-align:left">
+                            <thead>
+                              <tr>
+                                <th colspan="2">{{propertymap.propertyname|titlecase}}</th>
+                              </tr>
+                            </thead>
+                            <tr>
+                              <td>Price</td>
+                              <td>{{propertymap.price}}</td>
+                            </tr>
+                            <tr>
+                              <td>Duration</td>
+                              <td>{{propertymap.rentalperiod}}</td>
+                            </tr>
+                            <tr>
+                              <td>Posted date</td>
+                              <td>{{propertymap.posteddate}}</td>
+                            </tr>
+                            <tr>
+                              <td>Area</td>
+                              <td>{{propertymap.propertyarea}}</td>
+                            </tr>
+                            <tr>
+                              <td>Type</td>
+                              <td>{{propertymap.propertytype}}</td>
+                            </tr>
+                          </table>
+                        </div>
+
+                      </div>
+                    </div>
+                  </agm-info-window>
+                </div>
+              </agm-marker>
+            </agm-map>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
